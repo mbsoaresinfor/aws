@@ -15,6 +15,7 @@ public class UsersController {
     private static int contId;
     @GetMapping
     public ResponseEntity<List<User>> getUser(){
+        System.out.printf(">>> Processing getUser <<<");
         return ResponseEntity
                 .ok()
                 .body(listUser);
@@ -22,6 +23,7 @@ public class UsersController {
 
     @PostMapping
     public ResponseEntity<Integer> createUser(@RequestBody User user){
+        System.out.printf(">>> Processing createUser: [" + user + "]<<<");
         user.setId(++contId);
         listUser.add(user);
         return ResponseEntity
