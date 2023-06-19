@@ -1,6 +1,8 @@
-package br.com.mbs.aws;
+package br.com.mbs.aws.entity;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private Integer id;
     private String name;

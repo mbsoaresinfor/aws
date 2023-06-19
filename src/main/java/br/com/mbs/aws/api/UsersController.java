@@ -1,5 +1,9 @@
-package br.com.mbs.aws;
+package br.com.mbs.aws.api;
 
+import br.com.mbs.aws.service.s3.BucketName;
+import br.com.mbs.aws.service.s3.S3Service;
+import br.com.mbs.aws.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +15,9 @@ import java.util.List;
 @RestController("users")
 public class UsersController {
 
+
+    @Autowired
+    private S3Service s3Service;
     private List<User> listUser = new ArrayList<>();
     private static int contId;
     @GetMapping
@@ -25,6 +32,9 @@ public class UsersController {
     public ResponseEntity<Integer> createUser(@RequestBody User user){
         System.out.println(">>> Processing createUser: [" + user + "]<<<");
         user.setId(++contId);
+
+        s3Service.createFileBucket(user, BucketName.MARCELO_TEST_BUCKET_3.getValue());
+
         listUser.add(user);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
