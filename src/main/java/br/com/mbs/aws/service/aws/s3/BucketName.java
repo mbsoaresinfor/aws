@@ -1,4 +1,4 @@
-package br.com.mbs.aws.service.s3;
+package br.com.mbs.aws.service.aws.s3;
 
 public enum BucketName {
 
